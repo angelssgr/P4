@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p3 - SanSan Festival</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+       :root {
+            --primary-color: #002E2C;
+            --secondary-color: #F2F2EE;
+            --yellow-color: #FFEC3A;
+            --green-color: #78BBB8;
+            --light-green-color: #CCDA99;
+            --blue-color: #009DD5;
+            --light-blue-color: #A4D3EA;
+            --pink-color: #E49C94;
+        }
+        body {
+            margin: 0;
+            padding: 24px 12px;
+            min-height: 100vh;
+            background-color: var(--primary-color);
+            color: var(--primary-color);
+            font-family: "Quicksand", sans-serif;
+        }
+        .circulos {
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            width: 320px;
+            height: 320px;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        .circulo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .circulo-1 { width: 330px; height: 330px; background-color: var(--green-color); }
+        .circulo-2 { width: 245px; height: 245px; background-color: var(--primary-color); }
+        .circulo-3 { width: 180px; height: 180px; background-color: var(--pink-color); }
+        .circulo-4 { width: 100px; height: 100px; background-color: var(--yellow-color); }
+        .decoracion {
+            position: absolute;
+            z-index: 0;
+            top: 150px;
+            left: 0;
+            width: 100%;
+            height: 850px;
+        }
+        .arco {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 400px;
+            background-color: var(--blue-color);
+            border-radius: 50% 50% 0 0 / 70% 70% 0 0;
+        }
+        .lateral,
+        .bloque {
+            position: absolute;
+            width: 18%;
+        }
+        .lateral { top: 150px; height: 620px; }
+        .bloque  { top: 480px; height: 200px; }
+        .lateral-izquierdo {
+            left: 4%;
+            background-color: var(--light-blue-color);
+            border-radius: 90% 0 0 0 / 30% 0 0 0;
+        }
+        .lateral-derecho {
+            right: 4%;
+            background-color: var(--green-color);
+            border-radius: 0 90% 0 0 / 0 30% 0 0;
+        }
+        .bloque-izquierdo { left: 4%;  background-color: var(--yellow-color); }
+        .bloque-derecho   { right: 4%; background-color: var(--pink-color); }
+        header {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            width: 350px;
+            max-width: 90%;
+            margin: 340px auto 14px;
+            padding: 3px 7px;
+            border: 4px solid var(--primary-color);
+            background-color: var(--secondary-color);
+        }
+        .logo {
+            display: flex;
+            padding: 12px;
+            font-size: 30px;
+            line-height: 1;
+            letter-spacing: 1px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .logo > div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 14px;
+        }
+        .logo__san,
+        .logo__festival {
+            border-right: 4px solid var(--primary-color);
+        }
+        .logo__festival span {
+            display: block;
+        }
+        .logo__year {
+            writing-mode: vertical-rl;
+            rotate: 180deg;
+            font-size: 22px;
+            letter-spacing: 2px;
+            padding: 0 10px;
+        }
+        main {
+            position: relative;
+            z-index: 2;
+            box-sizing: border-box;
+            width: 90%;
+            max-width: 680px;
+            margin: -35px auto 0;
+            padding: 55px 20px 12px;
+            background-color: var(--secondary-color);
+            border: 4px solid var(--primary-color);
+            border-radius: 120px 120px 0 0 / 60px 60px 0 0;
+            overflow: hidden;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        main::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: 12px;
+            opacity: 0.55;
+            pointer-events: none;
+            border: 3px solid #deded5;
+            border-radius: 17% 17% 2% 2% / 10% 10% 2% 2%;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0 35px,
+                #deded5 36px 39px,
+                transparent 40px 65px
+            );
+        }
+        section + section {
+            margin-top: 14px;
+        }
+        h4 {
+            margin: 0 0 8px;
+        }
+        h4 time {
+            font-family: Bebas Neue, sans-serif;
+            display: inline-block;
+            padding: 2px 14px;
+            border: 2px solid var(--primary-color);
+            border-radius: 3px;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+        ul {
+            font-family: "Bebas Neue", sans-serif;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            line-height: 1.15;
+        }
+        li {
+            display: inline;
+            font-size: 15px;
+        }
+        li::after {
+            content: "·";
+            margin: 0 0.4em;
+        }
+        li:last-child::after {
+            content: none;
+        }
+        li:nth-child(-n+4) {
+            font-size: 27px;
+        }
+        li:nth-child(n+5):nth-child(-n+8) {
+            font-size: 19px;
+        }
+        li:nth-child(2)::after,
+        li:nth-child(4)::after,
+        li:nth-child(8)::after,
+        section:nth-of-type(2) li:nth-child(12)::after,
+        section:nth-of-type(3) li:nth-child(13)::after {
+            content: "\A";
+            white-space: pre;
+            margin: 0;
+        }
+        footer {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            width: 90%;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 8px 0 14px;
+            background-color: var(--secondary-color);
+            border-radius: 0 0 28px 28px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 11px;
+        }
+        footer a {
+            color: inherit;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="circulos">
+        <div class="circulo circulo-1"></div>
+        <div class="circulo circulo-2"></div>
+        <div class="circulo circulo-3"></div>
+        <div class="circulo circulo-4"></div>
+    </div>
+    <div class="decoracion">
+        <div class="arco"></div>
+        <div class="lateral lateral-izquierdo"></div>
+        <div class="lateral lateral-derecho"></div>
+        <div class="bloque bloque-izquierdo"></div>
+        <div class="bloque bloque-derecho"></div>
+    </div>
+    <header>
+        <div class="logo">
+            <div class="logo__san">SAN<br>SAN</div>
+            <div class="logo__festival">
+                <span>FESTIVAL</span>
+                <span>BENICÀSSIM</span>
+            </div>
+            <div class="logo__year">2025</div>
+        </div>
+    </header>
+    <main>
+        <section>
+            <h4><time datetime="2025-04-17">Jueves 17 abril</time></h4>
+            <ul>
+                <li>Los Planetas</li>
+                <li>Sen Senra</li>
+                <li>Alizzz</li>
+                <li>Carolina Durante</li>
+                <li>Cala Vento</li>
+                <li>Cariño</li>
+                <li>Depresión Sonora</li>
+                <li>Ralphie Choo</li>
+                <li>Cora Yako</li>
+                <li>Groc Talent</li>
+                <li>Innmir</li>
+                <li>Pipiolas</li>
+                <li>Sienna</li>
+                <li>Svetlana</li>
+                <li>Tristán!</li>
+            </ul>
+        </section>
+        <section>
+            <h4><time datetime="2025-04-18">Viernes 18 abril</time></h4>
+            <ul>
+                <li>Hombres G</li>
+                <li>Dani Fernández</li>
+                <li>Dorian</li>
+                <li>Zahara</li>
+                <li>Claim</li>
+                <li>Luis Fercán</li>
+                <li>Niña Polaca</li>
+                <li>Siloé</li>
+                <li>Alba Morena</li>
+                <li>Baldosa</li>
+                <li>Calizo</li>
+                <li>Inés Hernand</li>
+                <li>Nudo Zurdo</li>
+                <li>The Son of Wood</li>
+            </ul>
+        </section>
+        <section>
+            <h4><time datetime="2025-04-19">Sábado 19 abril</time></h4>
+            <ul>
+                <li>Franz Ferdinand</li>
+                <li>Lori Meyers</li>
+                <li>Amaia</li>
+                <li>Sidonie</li>
+                <li>Alcalá Norte</li>
+                <li>Carlos Sadness</li>
+                <li>Delaporte</li>
+                <li>Melifluo</li>
+                <li>Anadie</li>
+                <li>Carlos Ares</li>
+                <li>Griso</li>
+                <li>La Plata</li>
+                <li>Las Dianas</li>
+                <li>NDLR</li>
+                <li>Tú Peleas Como Una Vaca</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p><a href="https://sansanfestival.com/2027/">www.sansanfestival.com</a></p>
+    </footer>
+</body>
+</html>
